@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url("https://fonts.bunny.net/css?family=Nunito");
+#form{
+  background-image: url("../../public/img/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 97vh;
+  width: 98vw;
+  color: #420001;
+  font-weight: 600;
+  font-size: 14px;
+}
+#dashboard{
+  background-image: url("../../public/img/dbbg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 97vh;
+  width: 98vw;
+}
+nav{
+  background-color: #5a7b99;
+}
+
+.signin {
+  color: #420001;
+  font-weight: 1px;
+  font-size: 35px;
+}
+
+#signIn {
+  border: 1px solid #420001;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 5px 5px 0 #420001;
+  /* border-radius: 20px;
+  padding: 35px;
+  backdrop-filter: blur(20px);
+  background: #fff1;
+  box-shadow: 2px 3px 15px 15px #0005;
+  border: 0.4px solid #CCC; */
+}
+
+form {
+  
+  /* font-weight: lighter; */
+}
+
+.input {
+  background-color: rgba(255, 255, 255, 0.232);
+  border-color: #420001;
+  /* margin-top: -15px; */
+  opacity: .8;
+}
+
+.btn {
+  color: #420001;
+  border: 1px solid #420001;
+  border-radius: 20px;
+  width: 200px;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #420001;
+  color: white;
+}
+
+.signup {
+  font-size: 12px;
+}
+
+.privacy {
+  font-size: 10px;
+}
+
+.link {
+  color: #420001;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.parsley-required {
+  color: white;
+}/*# sourceMappingURL=app.css.map */
