@@ -16,15 +16,50 @@
   font-size: 14px;
 }
 #dashboard{
-  background-image: url("../../public/img/dbbg.jpg");
+  background-image: url("../../public/img/bg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   height: 97vh;
   width: 98vw;
 }
+
+#landingPage{
+  background-image: url("../../public/img/lpbg.jpg");
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  height: 100vh;
+  /* width: 100vw; */
+}
+#cards{
+  content: '';
+  height: 100%;
+  /* width: 100vw; */
+  /* display: flex; */
+  justify-content: center;
+  margin-top: -1.5%;
+  bottom: 0;
+  background-image: url(../../public/img/lpbgg.jpg);
+  background-size: cover;
+  /* background-repeat: repeat-y; */
+  /* background-attachment: fixed; */
+}
+
+
+
+
 nav{
   background-color: #5a7b99;
+  width: 90vw;
+  position: fixed;
+  z-index: 3;
+  /* position: absolute; */
+}
+.sign{
+  color: #2f4256;
+  font-weight: bolder;
+  /* margin-top: 99px; */
 }
 
 .signin {
@@ -92,4 +127,22 @@ form {
 
 .parsley-required {
   color: white;
-}/*# sourceMappingURL=app.css.map */
+}
+
+
+.form-input{
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+}
+
+
+.logo{
+  font-size: 1000%;
+  color: white;
+}
+.card{
+  border: solid 3px #5a7b99;
+  border-radius: 20px;
+  box-shadow: 0 5px 5px 0 #5a7b99;
+  backdrop-filter: blur(10px);
+}

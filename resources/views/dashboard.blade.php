@@ -7,7 +7,7 @@
         </h2>
     </x-slot> --}}
     <div class="flex justify-end mt-3">
-        <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="btn block focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
              + Add Meal
           </button>
     </div>
@@ -25,6 +25,7 @@
               <tr class="border-b-2 border-stone-900">
                 <th></th>
                 <th>Meal</th>
+                <th>Description</th>
                 <th>Date</th>
                 <th>Actions</th>
               </tr>
@@ -32,10 +33,11 @@
             <tbody class="">
               <tr class="border-b border-stone-900 py-60">
                 <td><img src="img/logo.png" alt="" style="height:50px;"></td>
-                <td>Malcolm Lockyer</td>
-                <td>1961</td>
-                <td>
-                    <div class="flex space-x-6">
+                <td class="text-center">Malcolm Lockyer</td>
+                <td class="text-center">Malcolm Lockyer</td>
+                <td class="text-center">1961</td>
+                <td class="">
+                    <div class="flex justify-center space-x-6">
                         <a href="#" class="update">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" style="width:30px;height:30px" class="mt-1 text-orange-600">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -51,11 +53,13 @@
               </tr>
               <tr class="border-b border-stone-900 py-60">
                 <td>Witchy Woman</td>
+                <td>Witchy Woman</td>
                 <td>The Eagles</td>
                 <td>1972</td>
                 <td>1972</td>
               </tr>
               <tr class="border-b border-stone-900 py-60">
+                <td>Shining Star</td>
                 <td>Shining Star</td>
                 <td>Earth, Wind, and Fire</td>
                 <td>1975</td>
@@ -76,34 +80,30 @@
               <div class="shadow sm:overflow-hidden sm:rounded-md">
                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-3 sm:col-span-2">
+                    <div class="grid col-span-3 sm:col-span-2">
                         <label class="col-form-label">Title:</label>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="title">
+                        <input class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
                     </div>
                   </div>
       
                   <div>
-                    <label for="about" class="block text-sm font-medium text-gray-700">About</label>
+                    <label for="about" class="block text-sm font-medium text-gray-700">Description:</label>
                     <div class="mt-1">
-                      <textarea id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="you@example.com"></textarea>
+                      <textarea id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder=""></textarea>
                     </div>
-                    <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
+                    <p class="mt-2 text-sm text-gray-500">Brief description of the meal. URLs are hyperlinked.</p>
+                  </div>
+                  <div class="relative max-w-sm">
+                    <label for="about" class="block text-sm font-medium text-gray-700">Date:</label>
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none mt-5">
+                      <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
                   </div>
       
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700">Photo</label>
-                    <div class="mt-1 flex items-center">
-                      <span class="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </span>
-                      <button type="button" class="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Change</button>
-                    </div>
-                  </div>
       
                   <div>
-                    <label class="block text-sm font-medium text-gray-700">Cover photo</label>
+                    <label class="block text-sm font-medium text-gray-700">Image</label>
                     <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                       <div class="space-y-1 text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -130,5 +130,7 @@
         </div>
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+      <script src="../path/to/flowbite/dist/datepicker.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/datepicker.min.js"></script>
 
 </x-app-layout>
