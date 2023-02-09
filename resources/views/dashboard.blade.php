@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css"  rel="stylesheet" />
 
@@ -6,6 +7,12 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot> --}}
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+
     <div class="flex justify-end mt-3">
         <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="btn block focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
              + Add Meal
@@ -31,13 +38,39 @@
               </tr>
             </thead>
             <tbody class="">
+              @foreach ($meals as $meal)
               <tr class="border-b border-stone-900 py-60">
-                <td><img src="img/logo.png" alt="" style="height:50px;"></td>
-                <td class="text-center">Malcolm Lockyer</td>
-                <td class="text-center">Malcolm Lockyer</td>
-                <td class="text-center">1961</td>
+                <td><img src="img/{{ $meal->image }}" alt="" style="height:50px;"></td>
+                <td class="text-center">{{ $meal->name }}</td>
+                <td class="text-center">{{ $meal->description }}</td>
+                <td class="text-center">{{ $meal->date }}</td>
                 <td class="">
-                    <div class="flex justify-center space-x-6">
+                  {{-- <form action="{{ route('meals.destroy',$meal->id) }}" method="POST"> --}}
+                  <form class="flex justify-center space-x-6" action="" method="POST">
+   
+    
+                    <a href="">
+                    {{-- <a href="{{ route('meals.edit',$meal->id) }}"> --}}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" style="width:30px;height:30px" class="mt-1 text-orange-600">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                      </svg>
+                    </a>
+   
+                    @csrf
+                    {{-- @method('DELETE') --}}
+      
+                    <button type="submit">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" style="width:30px;height:30px" class="mt-1 text-red-800">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                      </svg>
+                    </button>
+                </form>
+
+
+
+
+
+                    {{-- <div class="flex justify-center space-x-6">
                         <a href="#" class="update">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" style="width:30px;height:30px" class="mt-1 text-orange-600">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -48,10 +81,11 @@
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
                         </a>
-                    </div>
+                    </div> --}}
                 </td>
               </tr>
-              <tr class="border-b border-stone-900 py-60">
+              @endforeach
+              {{-- <tr class="border-b border-stone-900 py-60">
                 <td>Witchy Woman</td>
                 <td>Witchy Woman</td>
                 <td>The Eagles</td>
@@ -64,7 +98,7 @@
                 <td>Earth, Wind, and Fire</td>
                 <td>1975</td>
                 <td>1975</td>
-              </tr>
+              </tr> --}}
             </tbody>
           </table>
     </div>
@@ -82,14 +116,14 @@
                   <div class="grid grid-cols-3 gap-6">
                     <div class="grid col-span-3 sm:col-span-2">
                         <label class="col-form-label">Title:</label>
-                        <input class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                        <input class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" name="name"/>
                     </div>
                   </div>
       
                   <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Description:</label>
                     <div class="mt-1">
-                      <textarea id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder=""></textarea>
+                      <textarea id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="" name="description"></textarea>
                     </div>
                     <p class="mt-2 text-sm text-gray-500">Brief description of the meal. URLs are hyperlinked.</p>
                   </div>
@@ -98,7 +132,7 @@
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none mt-5">
                       <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                     </div>
-                    <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                    <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" name="date">
                   </div>
       
       
@@ -112,7 +146,7 @@
                         <div class="flex text-sm text-gray-600">
                           <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                             <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                            <input id="file-upload" name="file-upload" type="file" class="sr-only" name="image">
                           </label>
                           <p class="pl-1">or drag and drop</p>
                         </div>

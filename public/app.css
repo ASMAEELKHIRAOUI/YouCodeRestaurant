@@ -16,7 +16,7 @@
   font-size: 14px;
 }
 #dashboard{
-  background-image: url("../../public/img/bg.jpg");
+  background-image: url("../../public/img/dbbg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -49,12 +49,19 @@
 
 
 
-nav{
+#dbnav{
   background-color: #5a7b99;
-  width: 90vw;
+  width: 100vw;
+  /* position: fixed; */
+  /* z-index: 3; */
+  /* margin-top: -.8%; */
+  /* position: absolute; */
+}
+#lpnav{
+  background-color: #5a7b99;
+  width: 100vw;
   position: fixed;
   z-index: 3;
-  /* position: absolute; */
 }
 .sign{
   color: #2f4256;
