@@ -7,16 +7,16 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot> --}}
-    @if ($message = Session::get('success'))
+    {{-- @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
     </div>
-@endif
+@endif --}}
 
     <div class="flex justify-end mt-3">
-        <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="btn block focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
-             + Add Meal
-          </button>
+      <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="btn block focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
+        + Add Meal
+      </button>
     </div>
 
     <div class="py-12">
@@ -30,7 +30,7 @@
         <table class="table-fixed w-11/12 mx-16">
             <thead>
               <tr class="border-b-2 border-stone-900">
-                <th></th>
+                <th>images</th>
                 <th>Meal</th>
                 <th>Description</th>
                 <th>Date</th>
@@ -40,24 +40,24 @@
             <tbody class="">
               @foreach ($meals as $meal)
               <tr class="border-b border-stone-900 py-60">
-                <td><img src="img/{{ $meal->image }}" alt="" style="height:50px;"></td>
+                <td><img src="img/{{ $meal->image }}" alt="" style="height:100px;width:100px"></td>
                 <td class="text-center">{{ $meal->name }}</td>
                 <td class="text-center">{{ $meal->description }}</td>
                 <td class="text-center">{{ $meal->date }}</td>
                 <td class="">
-                  {{-- <form action="{{ route('meals.destroy',$meal->id) }}" method="POST"> --}}
-                  <form class="flex justify-center space-x-6" action="" method="POST">
+                  <form class="flex justify-center space-x-6" action="{{ route('meals.destroy',$meal->id) }}" method="POST">
+                  {{-- <form class="flex justify-center space-x-6" action="" method="POST"> --}}
    
     
-                    <a href="">
-                    {{-- <a href="{{ route('meals.edit',$meal->id) }}"> --}}
+                    {{-- <a href=""> --}}
+                    <a href="{{ route('meals.edit',$meal->id) }}">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" style="width:30px;height:30px" class="mt-1 text-orange-600">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                       </svg>
                     </a>
    
                     @csrf
-                    {{-- @method('DELETE') --}}
+                    @method('DELETE')
       
                     <button type="submit">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" style="width:30px;height:30px" class="mt-1 text-red-800">
@@ -110,9 +110,20 @@
     <div>
         <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
           <div class="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form action="{{route('meals.store')}}" method="POST" enctype="multipart/form-data">
               <div class="shadow sm:overflow-hidden sm:rounded-md">
                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                  @if ($errors->any())
+                      <div class="text-red">
+                          <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+                  @csrf
                   <div class="grid grid-cols-3 gap-6">
                     <div class="grid col-span-3 sm:col-span-2">
                         <label class="col-form-label">Title:</label>
@@ -123,16 +134,16 @@
                   <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">Description:</label>
                     <div class="mt-1">
-                      <textarea id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="" name="description"></textarea>
+                      <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="" name="description"></textarea>
                     </div>
                     <p class="mt-2 text-sm text-gray-500">Brief description of the meal. URLs are hyperlinked.</p>
                   </div>
                   <div class="relative max-w-sm">
                     <label for="about" class="block text-sm font-medium text-gray-700">Date:</label>
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none mt-5">
+                    {{-- <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none mt-5">
                       <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" name="date">
+                    </div> --}}
+                    <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" name="date">
                   </div>
       
       
@@ -146,7 +157,7 @@
                         <div class="flex text-sm text-gray-600">
                           <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                             <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only" name="image">
+                            <input id="file-upload" type="file" class="sr-only" name="image">
                           </label>
                           <p class="pl-1">or drag and drop</p>
                         </div>

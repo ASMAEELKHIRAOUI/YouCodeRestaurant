@@ -30,9 +30,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [MealController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard', [MealController::class, 'create'])->name('dashboard');
+    Route::post('/dashboard', [MealController::class, 'store'])->name('dashboard');
+});
 
-// Route::resource('meals', MealController::class);
+Route::resource('meals', MealController::class);
 
-Route::get('/dashboard', [MealController::class, 'index'])->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', [MealController::class, 'index'])->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', [MealController::class, 'create'])->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', [MealController::class, 'store'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

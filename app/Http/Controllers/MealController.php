@@ -32,7 +32,7 @@ class MealController extends Controller
      */
     public function create()
     {
-        // return view('meals.create');
+        return view('dashboard');
     }
 
     /**
@@ -43,17 +43,30 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
+        // $tt = $request->all()
+        // return $tt;
+        // dd("hghghg");
         // $request->validate([
         //     'name' => 'required',
         //     'description' => 'required',
         //     'date' => 'required',
         //     'image' => 'required',
         // ]);
-      
-        // Meal::create($request->all());
-       
-        // return redirect()->route('meals.index')
-        //                 ->with('success','Meal created successfully.');
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'img/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+        Meal::create($input);
+        
+
+        // Meal::create($input);
+        return redirect()->route('dashboard');
+
+        // dd($request->all());
     }
 
     /**
@@ -108,9 +121,8 @@ class MealController extends Controller
      */
     public function destroy(Meal $meal)
     {
-        // $meal->delete();
+        $meal->delete();
        
-        // return redirect()->route('meals.index')
-        //                 ->with('success','Meal deleted successfully');
+        return redirect()->route('dashboard')->with('success','Meal deleted successfully');
     }
 }
