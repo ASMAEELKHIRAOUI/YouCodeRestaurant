@@ -88,7 +88,7 @@ class MealController extends Controller
      */
     public function edit(Meal $meal)
     {
-        // return view('meals.edit',compact('meal'));
+        return view('edit',['meal' => $meal]);
     }
 
     /**
@@ -107,10 +107,9 @@ class MealController extends Controller
         //     'image' => 'required',
         // ]);
       
-        // $meal->update($request->all());
+        $meal->update($request->all());
       
-        // return redirect()->route('meals.index')
-        //                 ->with('success','Meal updated successfully');
+        return redirect()->route('dashboard')->with('success','Meal updated successfully');
     }
 
     /**

@@ -34,12 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [MealController::class, 'index'])->name('dashboard');
     Route::post('/dashboard', [MealController::class, 'create'])->name('dashboard');
     Route::post('/dashboard', [MealController::class, 'store'])->name('dashboard');
+    Route::patch('/update', [MealController::class, 'update'])->name('update');
 });
 
 Route::resource('meals', MealController::class);
-
-// Route::get('/dashboard', [MealController::class, 'index'])->middleware(['auth'])->name('dashboard');
-// Route::get('/dashboard', [MealController::class, 'create'])->middleware(['auth'])->name('dashboard');
-// Route::get('/dashboard', [MealController::class, 'store'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
