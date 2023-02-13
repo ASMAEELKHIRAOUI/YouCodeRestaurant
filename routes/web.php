@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('homepage');
 Route::get('/', function () {
     return view('welcome')->with('meals', Meal::all());
 })->name('welcome');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard', [MealController::class, 'store'])->name('dashboard');
     Route::patch('/update', [MealController::class, 'update'])->name('update');
 });
-Route::get('/welcome', [MealController::class, 'index'])->name('welcome');
+// Route::get('/welcome', [MealController::class, 'index'])->name('welcome');
 
 Route::resource('meals', MealController::class);
 
