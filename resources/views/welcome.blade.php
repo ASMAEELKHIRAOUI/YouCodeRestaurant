@@ -107,8 +107,19 @@
     
     <div class="grid grid-cols-4 gap-4 justify-items-center pb-12" id="cards">
 
-    
+        @foreach ($meals as $meal)
     <div class="card text-center pb-2 mt-20">
+        <img src="img/{{ $meal->image }}" alt="" style="height:400px;width:300px;border-radius:20px">
+    <h1 class="text-4xl text-white">{{ $meal->name }}</h1>
+    <p class="text-white">{{ $meal->description }}</p>
+    <p class="text-white">{{ $meal->date }}</p>
+    </div>
+    @endforeach
+
+
+
+
+    {{-- <div class="card text-center pb-2 mt-20">
         <img src="img/lpbg.jpg" alt="" style="height:400px;width:300px;border-radius:20px">
     <h1 class="text-4xl text-white">ffjko</h1>
     <p class="text-white">sxedcrftgyhuijlojihuyg</p>
@@ -131,13 +142,7 @@
     <h1 class="text-4xl text-white">ffjko</h1>
     <p class="text-white">sxedcrftgyhuijlojihuyg</p>
     <p class="text-white">77/77/0875</p>
-    </div>
-    <div class="card text-center pb-2 mt-20">
-        <img src="img/lpbg.jpg" alt="" style="height:400px;width:300px;border-radius:20px">
-    <h1 class="text-4xl text-white">ffjko</h1>
-    <p class="text-white">sxedcrftgyhuijlojihuyg</p>
-    <p class="text-white">77/77/0875</p>
-    </div>
+    </div> --}}
     
     
 </div>

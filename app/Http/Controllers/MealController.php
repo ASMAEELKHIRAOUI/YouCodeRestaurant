@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\StoreMealRequest;
 
 class MealController extends Controller
 {
@@ -41,8 +42,9 @@ class MealController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Meal $meal ,StoreMealRequest $request)
     {
+        $meal -> store($request->validate());
         // $tt = $request->all()
         // return $tt;
         // dd("hghghg");
@@ -124,4 +126,6 @@ class MealController extends Controller
        
         return redirect()->route('dashboard')->with('success','Meal deleted successfully');
     }
+
+
 }

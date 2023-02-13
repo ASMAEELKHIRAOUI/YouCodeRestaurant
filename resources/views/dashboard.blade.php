@@ -114,7 +114,7 @@
               <div class="shadow sm:overflow-hidden sm:rounded-md">
                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                   @if ($errors->any())
-                      <div class="text-red">
+                      <div class="text-red-600">
                           <strong>Whoops!</strong> There were some problems with your input.<br><br>
                           <ul>
                               @foreach ($errors->all() as $error)

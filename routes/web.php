@@ -16,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+// Route::get('/', [MealController::class, 'index'])->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard', [MealController::class, 'store'])->name('dashboard');
     Route::patch('/update', [MealController::class, 'update'])->name('update');
 });
+Route::get('/welcome', [MealController::class, 'index'])->name('welcome');
 
 Route::resource('meals', MealController::class);
 
