@@ -1,4 +1,7 @@
 <?php
+
+
+use App\Models\Meal;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with('meals', Meal::all());
 })->name('welcome');
 
 Route::get('/dashboard', function () {

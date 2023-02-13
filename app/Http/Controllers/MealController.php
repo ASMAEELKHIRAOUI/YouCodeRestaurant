@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
-use App\Http\Requests\StoreMealRequest;
+use Illuminate\Http\Request;
+// use App\Http\Requests\StoreMealRequest;
 
 class MealController extends Controller
 {
@@ -54,13 +54,13 @@ class MealController extends Controller
         //     'date' => 'required',
         //     'image' => 'required',
         // ]);
-        $input = $request->all();
+        // $input = $request->all();
 
         if ($image = $request->file('image')) {
             $destinationPath = 'img/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $input['image'] = "$imageName";
         }
         Meal::create($input);
         
@@ -108,9 +108,17 @@ class MealController extends Controller
         //     'date' => 'required',
         //     'image' => 'required',
         // ]);
-      
-        $meal->update($request->all());
-      
+        // $meal -> store($request->validate());
+        
+        $input = $request->all();
+        if($image = $request->file('image')){
+            $destinationPath = 'img/';
+            $imageName = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $input['image'] = $imageName;
+        }else unset($input['image']);
+       $meal->update($input);
+    //   return $input;
         return redirect()->route('dashboard')->with('success','Meal updated successfully');
     }
 
