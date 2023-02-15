@@ -7,7 +7,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    {{-- <link href="../../../public/app.css" rel="stylesheet"> --}}
+    <link href="img/icon.png" rel="website icon">
     @vite(['../../../public/app.css', 'resources/js/app.js'])
     <!-- Styles -->
     <style>
